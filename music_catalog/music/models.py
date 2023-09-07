@@ -15,6 +15,19 @@ class Musician(NameField, models.Model):
         ordering = ['name']
 
 
+class Song(NameField, models.Model):
+    """Модель для представления песен."""
+    musician = models.ManyToManyField(
+        Musician, related_name='songs',
+        verbose_name='Исполнитель'
+    )
+
+    class Meta:
+        verbose_name = 'Песня'
+        verbose_name_plural = 'Песни'
+        ordering = ['name']
+
+
 class Album(NameField, models.Model):
     """Модель для представления музыкальных альбомов."""
     musician = models.ManyToManyField(
@@ -32,19 +45,6 @@ class Album(NameField, models.Model):
         verbose_name = 'Альбом'
         verbose_name_plural = 'Альбомы'
         ordering = ['name', '-year_of_release']
-
-
-class Song(NameField, models.Model):
-    """Модель для представления песен."""
-    musician = models.ManyToManyField(
-        Musician, related_name='songs',
-        verbose_name='Исполнитель'
-    )
-
-    class Meta:
-        verbose_name = 'Песня'
-        verbose_name_plural = 'Песни'
-        ordering = ['name']
 
 
 class AlbumSong(models.Model):
@@ -72,4 +72,5 @@ class AlbumSong(models.Model):
     class Meta:
         verbose_name = 'Песня в альбоме'
         verbose_name_plural = 'Песни в альбомах'
+        unique_together = ['album', 'song']
         ordering = ['number']
