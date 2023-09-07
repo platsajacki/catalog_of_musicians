@@ -9,7 +9,7 @@ class NameField(models.Model):
     name = models.CharField('Название', max_length=150)
 
     class Meta:
-        __abstract__ = True
+        abstract = True
 
     def __str__(self) -> str:
         """Возвращает строковое представление 'name'."""
