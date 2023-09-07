@@ -1,0 +1,1 @@
+SONGS_IN_ALBUM: int = 50
