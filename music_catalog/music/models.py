@@ -36,9 +36,31 @@ class Album(NameField, models.Model):
 
 class Song(NameField, models.Model):
     """Модель для представления песен."""
-    album = models.ManyToManyField(
-        Album, related_name='songs',
+    musician = models.ManyToManyField(
+        Musician, related_name='songs',
+        verbose_name='Исполнитель'
+    )
+
+    class Meta:
+        verbose_name = 'Песня'
+        verbose_name_plural = 'Песни'
+        ordering = ['name']
+
+
+class AlbumSong(models.Model):
+    """
+    Модель для связи альбомов и песен
+    с указанием порядкового номера песни в альбоме.
+    """
+    album = models.ForeignKey(
+        Album, on_delete=models.CASCADE,
+        related_name='albums',
         verbose_name='Альбом'
+    )
+    song = models.ForeignKey(
+        Song, on_delete=models.CASCADE,
+        related_name='songs',
+        verbose_name='Песня'
     )
     number = models.PositiveSmallIntegerField(
         validators=[
@@ -48,6 +70,6 @@ class Song(NameField, models.Model):
     )
 
     class Meta:
-        verbose_name = 'Песня'
-        verbose_name_plural = 'Песни'
-        ordering = ['name', 'number']
+        verbose_name = 'Песня в альбоме'
+        verbose_name_plural = 'Песни в альбомах'
+        ordering = ['number']
