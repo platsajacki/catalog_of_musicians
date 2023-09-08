@@ -1,12 +1,13 @@
 from django.db import models
 
 
-class NameField(models.Model):
+class NameSlugField(models.Model):
     """
-    Абстрактная модель, включающая в себя поле
-    'name' и его строковое представление.
+    Абстрактная модель, включающая в себя поля 'slug',
+    'name' и cтроковое представление 'name'.
     """
     name = models.CharField('Название', max_length=150)
+    slug = models.SlugField('Слаг', max_length=150, unique=True)
 
     class Meta:
         abstract = True

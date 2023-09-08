@@ -14,6 +14,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from constants import DESCRIPTION_PROJECT
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -46,8 +48,19 @@ INSTALLED_APPS = [
     'core',
     'music',
 
+    'drf_spectacular',
     'rest_framework',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'COM. Catalog Of Musicians',
+    'DESCRIPTION': DESCRIPTION_PROJECT,
+    'VERSION': '1.0',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

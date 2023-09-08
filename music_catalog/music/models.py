@@ -4,10 +4,10 @@ from django.db import models
 from django.core.validators import MaxValueValidator
 
 from constants import SONGS_IN_ALBUM
-from core.models import NameField
+from core.models import NameSlugField
 
 
-class Musician(NameField, models.Model):
+class Musician(NameSlugField, models.Model):
     """Модель для представления исполнителей."""
     class Meta:
         verbose_name = 'Исполнитель'
@@ -15,7 +15,7 @@ class Musician(NameField, models.Model):
         ordering = ['name']
 
 
-class Song(NameField, models.Model):
+class Song(NameSlugField, models.Model):
     """Модель для представления песен."""
     musician = models.ManyToManyField(
         Musician, related_name='songs',
@@ -28,7 +28,7 @@ class Song(NameField, models.Model):
         ordering = ['name']
 
 
-class Album(NameField, models.Model):
+class Album(NameSlugField, models.Model):
     """Модель для представления музыкальных альбомов."""
     musician = models.ManyToManyField(
         Musician, related_name='albums',
