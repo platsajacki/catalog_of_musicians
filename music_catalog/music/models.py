@@ -21,11 +21,6 @@ class Musician(NameSlugField, models.Model):
 
 class Song(NameSlugField, models.Model):
     """Модель для представления песен."""
-    musician = models.ManyToManyField(
-        Musician, related_name='songs',
-        verbose_name='Исполнитель'
-    )
-
     class Meta:
         verbose_name = 'Песня'
         verbose_name_plural = 'Песни'
@@ -34,15 +29,22 @@ class Song(NameSlugField, models.Model):
 
 class Album(NameSlugField, models.Model):
     """Модель для представления музыкальных альбомов."""
-    musician = models.ManyToManyField(
+    musician = models.ForeignKey(
         Musician, related_name='albums',
-        verbose_name='Исполнитель'
+        verbose_name='Исполнитель',
+        on_delete=models.CASCADE
     )
     year_of_release = models.PositiveSmallIntegerField(
         validators=[
             MaxValueValidator(dt.datetime.now().year)
         ],
         verbose_name='Год выпуска'
+    )
+    songs = models.ManyToManyField(
+        Song,
+        through='AlbumSong',
+        related_name='albums',
+        verbose_name='Песни в альбоме'
     )
 
     class Meta:
@@ -66,7 +68,7 @@ class AlbumSong(models.Model):
         related_name='songs',
         verbose_name='Песня'
     )
-    number = models.PositiveSmallIntegerField(
+    number_in_album = models.PositiveSmallIntegerField(
         validators=[
             MaxValueValidator(SONGS_IN_ALBUM)
         ],
@@ -77,4 +79,4 @@ class AlbumSong(models.Model):
         verbose_name = 'Песня в альбоме'
         verbose_name_plural = 'Песни в альбомах'
         unique_together = ['album', 'song']
-        ordering = ['number']
+        ordering = ['number_in_album']
