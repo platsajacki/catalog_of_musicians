@@ -12,6 +12,7 @@ from .mixins import PermissionFilterSearchMixin
 from .serializers import (
     AdminLoginSerializer, MusicianSerializer, SongSerialiser, AlbumSerialiser
 )
+from constants import MUSICIAN_SCHEMA
 from music.models import User, Musician, Song, Album
 
 
@@ -37,50 +38,7 @@ class AdminLoginView(generics.CreateAPIView):
         return Response({'access': str(refresh.access_token)})
 
 
-@extend_schema_view(
-    list=extend_schema(
-        summary='Получить всех исполнителей.',
-        description=(
-            'Получить информацию об исполнителях музыки. '
-            'Доступно всем пользователям.'
-        ),
-    ),
-    create=extend_schema(
-        summary='Создать исполнителя.',
-        description=(
-            'Создать информацию о исполнителе музыки. '
-            'Доступно только администратору.'
-        ),
-    ),
-    retrieve=extend_schema(
-        summary='Получить исполнителя.',
-        description=(
-            'Получить информацию о конкретном исполнителе музыки. '
-            'Доступно всем пользователям.'
-        ),
-    ),
-    update=extend_schema(
-        summary='Обновить информацию исполнителя.',
-        description=(
-            'Обновить информацию о конкретном исполнителе музыки. '
-            'Доступно только администратору.'
-        ),
-    ),
-    partial_update=extend_schema(
-        summary='Частично обновить информацию исполнителя.',
-        description=(
-            'Частично обновить информацию о конкретном исполнителе музыки. '
-            'Доступно только администратору.'
-        ),
-    ),
-    destroy=extend_schema(
-        summary='Удалить информацию об исполнителе.',
-        description=(
-            'Удалить информацию о конкретном исполнителе музыки. '
-            'Доступно только администратору.'
-        ),
-    ),
-)
+@extend_schema_view(**MUSICIAN_SCHEMA)
 class MusicianViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
     """Представление для управления информацией об исполнителях музыки."""
     queryset = Musician.objects.all()
@@ -96,10 +54,16 @@ class SongViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
     lookup_field = 'slug'
     lookup_url_kwarg = 'song'
 
+    def get_album(self) -> Album:
+        return get_object_or_404(Album, slug=self.kwargs['album'])
+
+    def perform_create(self, serializer):
+        serializer.context['album'] = self.get_album()
+        serializer.save()
+
 
 class AlbumViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
     """Представление для управления информацией об альбомах."""
-    queryset = Album.objects.all()
     serializer_class = AlbumSerialiser
     lookup_field = 'slug'
     lookup_url_kwarg = 'album'

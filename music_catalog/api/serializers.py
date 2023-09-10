@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.contrib.auth import authenticate
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from rest_framework import serializers
@@ -49,21 +51,36 @@ class SongSerialiser(serializers.ModelSerializer, LookUpSlugFieldMixin):
     Сериализатор для информации о музыкальных произведениях.
     Поддерживает создание и обновление данных музыкальных произведений.
     """
-    # number_in_album = serializers.SerializerMethodField()
+    number_in_album = serializers.IntegerField(required=True)
 
     class Meta:
         model = Song
-        fields = ('name', 'slug',  # 'number_in_album'
-                  )
+        fields = ('name', 'slug', 'number_in_album')
 
-    # def get_number_in_album(self, obj: Song) -> int:
-    #     """Получает объект AlbumSong, связанный с текущей песней (obj)."""
-    #     album = Album.objects.get(slug=self.context['album'])
-    #     album_song, _ = AlbumSong.objects.get_or_create(
-    #         album=album,
-    #         song=obj
-    #     )
-    #     return album_song.number_in_album
+    def create(self, validated_data: dict[str, str]) -> Song:
+        """Создает новую песню и связывает ее с альбомом."""
+        song: Song = Song.objects.create(
+            name=validated_data['name'],
+            slug=validated_data['slug']
+        )
+        album: Album = self.context['album']
+        AlbumSong.objects.create(
+            album=album, song=song,
+            number_in_album=validated_data['number_in_album']
+        )
+        return song
+
+    def to_representation(self, instance: Song) -> dict[str, Any]:
+        """Готовит данные для ответа клиенут."""
+        number_in_album: int = AlbumSong.objects.get(
+            song=instance,
+            album=self.context['album']
+        ).number_in_album
+        return {
+            'name': instance.name,
+            'slug': instance.slug,
+            'number_in_album': number_in_album
+        }
 
 
 class AlbumSerialiser(serializers.ModelSerializer, LookUpSlugFieldMixin):
