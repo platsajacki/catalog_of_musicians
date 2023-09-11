@@ -63,7 +63,7 @@ class SongSerialiser(serializers.ModelSerializer, LookUpSlugFieldMixin):
             name=validated_data['name'],
             slug=validated_data['slug']
         )
-        album: Album = self.context['album']
+        album: Album = self.context['view'].get_album()
         AlbumSong.objects.create(
             album=album, song=song,
             number_in_album=validated_data['number_in_album']
@@ -71,10 +71,10 @@ class SongSerialiser(serializers.ModelSerializer, LookUpSlugFieldMixin):
         return song
 
     def to_representation(self, instance: Song) -> dict[str, Any]:
-        """Готовит данные для ответа клиенут."""
+        """Готовит данные для ответа клиенту."""
         number_in_album: int = AlbumSong.objects.get(
             song=instance,
-            album=self.context['album']
+            album=self.context['view'].get_album()
         ).number_in_album
         return {
             'name': instance.name,
@@ -92,11 +92,15 @@ class AlbumSerialiser(serializers.ModelSerializer, LookUpSlugFieldMixin):
         slug_field='slug',
         read_only=True
     )
-    songs = SongSerialiser(many=True, read_only=True)
+    total_songs = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Album
         fields = (
             'name', 'slug', 'musician',
-            'songs', 'year_of_release'
+            'total_songs', 'year_of_release'
         )
+
+    def get_total_songs(self, obj: Album) -> int:
+        """Метод для вычисления общего количества песен в альбоме."""
+        return obj.songs.count()
