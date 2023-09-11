@@ -50,10 +50,12 @@ class MusicianViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
 @extend_schema_view(**SONG_SCHEMA)
 class SongViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
     """Представление для управления информацией о музыкальных произведениях."""
-    queryset = Song.objects.all()
     serializer_class = SongSerialiser
     lookup_field = 'slug'
     lookup_url_kwarg = 'song'
+
+    def get_queryset(self) -> Song:
+        return Song.objects.filter(albums=self.get_album())
 
     def get_album(self) -> Album:
         """Получает объект альбома по параметрам URL."""
@@ -63,7 +65,6 @@ class SongViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
 @extend_schema_view(**ALBUM_SCHEMA)
 class AlbumViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
     """Представление для управления информацией об альбомах."""
-    queryset = Album.objects.all()
     serializer_class = AlbumSerialiser
     lookup_field = 'slug'
     lookup_url_kwarg = 'album'
@@ -71,6 +72,9 @@ class AlbumViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
     def get_musician(self) -> Musician:
         """Получает объект музыканта по параметрам URL."""
         return get_object_or_404(Musician, slug=self.kwargs['musician'])
+
+    def get_queryset(self):
+        return Album.objects.filter(musician=self.get_musician())
 
     def perform_create(self, serializer: AlbumSerialiser) -> None:
         """Создает новый альбом и связывает его с музыкантом."""

@@ -78,5 +78,8 @@ class AlbumSong(models.Model):
     class Meta:
         verbose_name = 'Песня в альбоме'
         verbose_name_plural = 'Песни в альбомах'
-        unique_together = ['album', 'song', 'number_in_album']
+        unique_together = [
+            ['album', 'song', 'number_in_album'],
+            ['album', 'number_in_album']
+        ]
         ordering = ['number_in_album']
