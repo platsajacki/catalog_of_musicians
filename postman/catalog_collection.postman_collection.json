@@ -1,0 +1,1261 @@
+{
+	"info": {
+		"_postman_id": "8fb1a338-dcc7-471f-8b82-ff388dd42b88",
+		"name": "Catalog Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29027162"
+	},
+	"item": [
+		{
+			"name": "Login admin.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add misician.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQzNDAzLCJpYXQiOjE2OTQ0NTcwMDMsImp0aSI6ImYwZWI0NDVlNTk3OTQwNjBiMTE5MzkzYWExNTFhYzU2IiwidXNlcl9pZCI6MX0.s_x8QCP76oeDBCWwoZAnf9Kv-u4N7yVzwSsPcFYszqA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "artist",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "artist",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add album.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "2020",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "album2020",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "album2020",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/albums/?name=album2022&slug=album2022",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						"albums",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "album2022"
+						},
+						{
+							"key": "slug",
+							"value": "album2022"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add song.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "song2020",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "song2020",
+							"type": "text"
+						},
+						{
+							"key": "number_in_album",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/albums/album2020/songs/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						"albums",
+						"album2020",
+						"songs",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get musicians.",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTM5NDM5LCJpYXQiOjE2OTQ0NTMwMzksImp0aSI6IjVkMjIxODYxZTllYzQzOGM4YTZhMzVkMTFhNTJmMDAxIiwidXNlcl9pZCI6MX0.QtaPnup0CiayhQTr24fHmoKTLy9fj4ow_Cw41pU-5bM",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "song2022",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "number_in_album",
+							"type": "text"
+						},
+						{
+							"key": "number_in_album",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get musician.",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTM5NDM5LCJpYXQiOjE2OTQ0NTMwMzksImp0aSI6IjVkMjIxODYxZTllYzQzOGM4YTZhMzVkMTFhNTJmMDAxIiwidXNlcl9pZCI6MX0.QtaPnup0CiayhQTr24fHmoKTLy9fj4ow_Cw41pU-5bM",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "song2022",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "number_in_album",
+							"type": "text"
+						},
+						{
+							"key": "number_in_album",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get albums.",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTM5NDM5LCJpYXQiOjE2OTQ0NTMwMzksImp0aSI6IjVkMjIxODYxZTllYzQzOGM4YTZhMzVkMTFhNTJmMDAxIiwidXNlcl9pZCI6MX0.QtaPnup0CiayhQTr24fHmoKTLy9fj4ow_Cw41pU-5bM",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "song2022",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "number_in_album",
+							"type": "text"
+						},
+						{
+							"key": "number_in_album",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/albums/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						"albums",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get album.",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTM5NDM5LCJpYXQiOjE2OTQ0NTMwMzksImp0aSI6IjVkMjIxODYxZTllYzQzOGM4YTZhMzVkMTFhNTJmMDAxIiwidXNlcl9pZCI6MX0.QtaPnup0CiayhQTr24fHmoKTLy9fj4ow_Cw41pU-5bM",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "song2022",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "number_in_album",
+							"type": "text"
+						},
+						{
+							"key": "number_in_album",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/albums/album2022/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						"albums",
+						"album2022",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update song.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "SOng2020",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "song2020",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "number_in_album",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/albums/album2020/songs/song2020/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						"albums",
+						"album2020",
+						"songs",
+						"song2020",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update song.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "SOng2020",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "song2020",
+							"type": "text"
+						},
+						{
+							"key": "number_in_album",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/albums/album2020/songs/song2020/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						"albums",
+						"album2020",
+						"songs",
+						"song2020",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete song.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "SOng2020",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "slug",
+							"value": "song2020",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "number_in_album",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/albums/album2020/songs/song2020/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						"albums",
+						"album2020",
+						"songs",
+						"song2020",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update album.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Album2020",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "song2020",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "number_in_album",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/albums/album2020/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						"albums",
+						"album2020",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update album.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "2021",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Album2020",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "albuuuuuuum",
+							"type": "text"
+						},
+						{
+							"key": "number_in_album",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/albums/album2020/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						"albums",
+						"album2020",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete album.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "2021",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Album2020",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "slug",
+							"value": "albuuuuuuum",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "number_in_album",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/albums/albuuuuuuum/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						"albums",
+						"albuuuuuuum",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update musician.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "name",
+						"value": "artisTT",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "2021",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "ArtisTT",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "albuuuuuuum",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "number_in_album",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update musician.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "name",
+						"value": "artisTT",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "2021",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "ArtisTT",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "artisssssst",
+							"type": "text"
+						},
+						{
+							"key": "number_in_album",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artist/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artist",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete musician.",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk0NTQwNjIxLCJpYXQiOjE2OTQ0NTQyMjEsImp0aSI6ImM2YTJkMTk4NTRmNDQwMmQ4YjcyYTUwNDE0NjNhMWQyIiwidXNlcl9pZCI6MX0.mTKGj1mNjVOcyfmPu4goS36Ey1M7tA97lvF0pIwwOsA",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "name",
+						"value": "artisTT",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year_of_release",
+							"value": "2021",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "ArtisTT",
+							"type": "text"
+						},
+						{
+							"key": "slug",
+							"value": "artisssssst",
+							"type": "text"
+						},
+						{
+							"key": "number_in_album",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/musicians/artisssssst/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"musicians",
+						"artisssssst",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

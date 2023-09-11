@@ -57,18 +57,48 @@ class SongSerialiser(serializers.ModelSerializer, LookUpSlugFieldMixin):
         model = Song
         fields = ('name', 'slug', 'number_in_album')
 
-    def create(self, validated_data: dict[str, str]) -> Song:
+    def validate_number_in_album(self, value: int) -> int:
+        """Проверяет уникальность порядкового номера песни в альбоме."""
+        album_song: AlbumSong | None = AlbumSong.objects.filter(
+            album=self.context['view'].get_album(), number_in_album=value
+        ).first()
+        if (
+            album_song and album_song.number_in_album != value
+            or album_song and self.context['request'].method == 'POST'
+        ):
+            raise serializers.ValidationError(
+                'В альбоме уже есть песня с таким порядковым номером.'
+            )
+        return value
+
+    def create(self, validated_data: dict[str, Any]) -> Song:
         """Создает новую песню и связывает ее с альбомом."""
+        album: Album = self.context['view'].get_album()
+        number_in_album: int = validated_data['number_in_album']
+        if AlbumSong.objects.filter(
+            album=album, number_in_album=number_in_album
+        ).exists():
+            raise serializers.ValidationError(
+                'В альбоме уже есть песня с таким порядковым номером.'
+            )
         song: Song = Song.objects.create(
             name=validated_data['name'],
             slug=validated_data['slug']
         )
-        album: Album = self.context['view'].get_album()
         AlbumSong.objects.create(
             album=album, song=song,
-            number_in_album=validated_data['number_in_album']
+            number_in_album=number_in_album
         )
         return song
+
+    def update(self, instance: Song, validated_data: dict[str, Any]) -> Song:
+        """Обновляет данные песни и связанной с ней информации в альбоме."""
+        album_song: AlbumSong = AlbumSong.objects.get(
+            song=instance, album=self.context['view'].get_album()
+        )
+        album_song.number_in_album = validated_data['number_in_album']
+        album_song.save()
+        return super().update(instance, validated_data)
 
     def to_representation(self, instance: Song) -> dict[str, Any]:
         """Готовит данные для ответа клиенту."""

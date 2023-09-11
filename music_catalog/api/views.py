@@ -73,7 +73,7 @@ class AlbumViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
         """Получает объект музыканта по параметрам URL."""
         return get_object_or_404(Musician, slug=self.kwargs['musician'])
 
-    def get_queryset(self):
+    def get_queryset(self) -> Album:
         return Album.objects.filter(musician=self.get_musician())
 
     def perform_create(self, serializer: AlbumSerialiser) -> None:
