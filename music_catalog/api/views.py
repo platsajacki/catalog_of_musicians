@@ -55,6 +55,7 @@ class SongViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
     lookup_url_kwarg = 'song'
 
     def get_queryset(self) -> Song:
+        """Оптимизирует запрос музыкальных произведений."""
         return Song.objects.filter(albums=self.get_album())
 
     def get_album(self) -> Album:
@@ -74,6 +75,7 @@ class AlbumViewSet(PermissionFilterSearchMixin, viewsets.ModelViewSet):
         return get_object_or_404(Musician, slug=self.kwargs['musician'])
 
     def get_queryset(self) -> Album:
+        """Оптимизирует запрос запрос альбомов."""
         return Album.objects.filter(musician=self.get_musician())
 
     def perform_create(self, serializer: AlbumSerialiser) -> None:
