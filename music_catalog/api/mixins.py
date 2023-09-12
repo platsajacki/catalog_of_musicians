@@ -16,6 +16,7 @@ class LookUpSlugFieldMixin:
 
 
 class PermissionFilterSearchMixin:
+    """Добавляет общие настройки для view."""
     permission_classes = [IsSafeMethod | IsAdminUser]
     filter_backends = [SearchFilter]
     search_fields = ['name']
